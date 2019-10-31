@@ -9,6 +9,7 @@ export default class SignUp extends Component {
 			<Container>
 				{'signup'}
 				{<Link to="/">signup</Link>}
+				{<Link to="/dashboard">dashboard</Link>}
 			</Container>
 		);
 	}

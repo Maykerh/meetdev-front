@@ -23,30 +23,53 @@ export const Container = styled.div`
 			margin-bottom:30px;
 		}
 
-		input {
-			height: 50px;
-			width: 315px;
-			margin-bottom: 15px;
-			border: none
-			background-color: rgba(0, 0, 0, 0.4);
-			color: #acacac;
-			font-size: 18px;
-			padding: 0 10px;
-			box-sizing: border-box;
+		form {
+			display: flex;
+			flex-direction: column;
 
-			::placeholder {
-				color:  #acacac20;
+			div {
+				margin-bottom: 15px;
+
+				input {
+					height: 50px;
+					width: 315px;
+					border: none
+					background-color: rgba(0, 0, 0, 0.4);
+					color: #acacac;
+					font-size: 16px;
+					padding: 0 10px;
+					box-sizing: border-box;
+					border-radius: 4px;
+					margin-bottom:3px;
+
+					::placeholder {
+						color:  #acacac20;
+					}
+				}
+
+				span {
+					color:  #aa0000;
+					font-size: 14px;
+				}
 			}
-		}
 
-		button {
-			height: 50px;
-			width: 315px;
-			color: #fff;
-			background-color: #f84c69;
-			border: none;
-			border-radius: 5px;
-			font-size: 18px
+			button {
+				height: 50px;
+				width: 315px;
+				color: #fff;
+				background-color: #f84c69;
+				border: none;
+				border-radius: 4px;
+				font-size: 18px;
+				margin-bottom: 10px;
+			}
+
+			a {
+				text-decoration: none;
+				color: #acacac;
+				font-size: 14px;
+				align-self: center
+			}
 		}
 	}
 `;
