@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
-
 	display: flex;
 	height: 100%;
 	width: 100%;

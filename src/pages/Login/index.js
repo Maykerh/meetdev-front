@@ -31,7 +31,7 @@ const Login = () => {
 				<span id="logo">M</span>
 				<Form schema={schema} onSubmit={handleLogin}>
 					<div>
-						<Input type="text" placeholder="e-mail" name="email" />
+						<Input type="text" placeholder="E-mail" name="email" />
 					</div>
 					<div>
 						<Input
