@@ -14,13 +14,6 @@ export const Container = styled.div`
 		flex-direction: column;
 		align-items: center;
 
-		#logo {
-			font-size: 60px;
-			color: #f84c69;
-			font-family: 'Permanent Marker';
-			margin-bottom:30px;
-		}
-
 		form {
 			display: flex;
 			flex-direction: column;

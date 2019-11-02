@@ -1,18 +1,27 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
 
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Dashboard from '../pages/Dashboard';
+import DefaultLayout from '../components/DafaultLayout';
 
 const Routes = () => {
 	return (
 		<Switch>
 			<Route exact path="/" component={Login} />
 			<Route path="/signup" component={SignUp} />
-			<PrivateRoute path="/dashboard" component={Dashboard} />
+			<DefaultLayout>
+				<PrivateRoute path="/dashboard" component={Dashboard} />
+				<PrivateRoute
+					path="/teste"
+					component={() => {
+						return <Link to="/dashboard">Dash</Link>;
+					}}
+				/>
+			</DefaultLayout>
 		</Switch>
 	);
 };

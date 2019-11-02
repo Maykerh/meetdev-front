@@ -7,6 +7,7 @@ import { Form, Input } from '@rocketseat/unform';
 import { signUpRequest } from '../../store/modules/auth/actions';
 
 import { Container } from './styles';
+import Logo from '../../components/Logo';
 
 const schema = Yup.object().shape({
 	name: Yup.string().required(),
@@ -29,7 +30,7 @@ const SignUp = () => {
 	return (
 		<Container>
 			<div>
-				<span id="logo">M</span>
+				<Logo />
 				<Form schema={schema} onSubmit={handleSignUp}>
 					<div>
 						<Input type="text" placeholder="Nome" name="name" />

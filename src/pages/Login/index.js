@@ -7,6 +7,7 @@ import { Form, Input } from '@rocketseat/unform';
 import { signInRequest } from '../../store/modules/auth/actions';
 
 import { Container } from './styles';
+import Logo from '../../components/Logo';
 
 const schema = Yup.object().shape({
 	email: Yup.string()
@@ -28,7 +29,7 @@ const Login = () => {
 	return (
 		<Container>
 			<div>
-				<span id="logo">M</span>
+				<Logo />
 				<Form schema={schema} onSubmit={handleLogin}>
 					<div>
 						<Input type="text" placeholder="E-mail" name="email" />
