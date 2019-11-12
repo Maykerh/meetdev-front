@@ -1,173 +1,69 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { utcToZonedTime } from 'date-fns-tz';
+import { format } from 'date-fns';
+import { pt } from 'date-fns/locale';
+import { FaChevronRight, FaPlusCircle } from 'react-icons/fa';
+
+import api from '../../services/api';
+
 import { Container, ListHeader, List, ListItem } from './styles';
 
 import Button from '../../components/Button';
 
-import { FaChevronRight, FaPlusCircle, FaAcquisitionsIncorporated } from 'react-icons/fa';
-
 const Dashboard = () => {
-	const [userMeetups, setUserMeetups] = useState = [];
+	const [userMeetups, setUserMeetups] = useState([]);
 
-	continuar aqui, buscar os meetups no banco!
+	useEffect(() => {
+		async function loadMeetups() {
+			const response = await api.get('/meetups');
 
-	render() {
+			response.data.map(meetup => {
+				let date = new Date(meetup.date);
+
+				date = utcToZonedTime(date, 'America/Sao_Paulo');
+
+				meetup.formattedDate = format(
+					date,
+					"d ' de ' LLLL ', às' k'h'",
+					{ locale: pt }
+				);
+			});
+
+			setUserMeetups(response.data);
+		}
+
+		loadMeetups();
+	}, []);
+
+	function renderItem(item) {
 		return (
-			<Container>
-				<ListHeader>
-					<div>Meus meetups</div>
-					<Button text={'Novo meetup'} Icon={FaPlusCircle} />
-				</ListHeader>
-				<List>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-					<ListItem>
-						<div>Meetup 1</div>
-						<div>
-							<time> 24 de junho, às 20h </time>
-							<Link to="/meetup-details">
-								<FaChevronRight size={12} color="#FFF" />
-							</Link>
-						</div>
-					</ListItem>
-				</List>
-			</Container>
+			<ListItem>
+				<div>{item.title}</div>
+				<div>
+					<time>{item.formattedDate}</time>
+					<Link to={`/meetup-details/${item.id}`}>
+						<FaChevronRight size={12} color="#FFF" />
+					</Link>
+				</div>
+			</ListItem>
 		);
 	}
-}
+
+	if (userMeetups.length === 0) {
+		return 'Nenhum meetup encontrado';
+	}
+
+	return (
+		<Container>
+			<ListHeader>
+				<div>Meus meetups</div>
+				<Button text={'Novo meetup'} Icon={FaPlusCircle} />
+			</ListHeader>
+			<List>{userMeetups.map(meetup => renderItem(meetup))}</List>
+		</Container>
+	);
+};
 
 export default Dashboard;

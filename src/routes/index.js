@@ -6,6 +6,7 @@ import PrivateRoute from './PrivateRoute';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Dashboard from '../pages/Dashboard';
+import Details from '../pages/Details';
 import DefaultLayout from '../components/DafaultLayout';
 
 const Routes = () => {
@@ -21,6 +22,7 @@ const Routes = () => {
 						return <Link to="/dashboard">Dash</Link>;
 					}}
 				/>
+				<PrivateRoute path="/meetup-details/:id" component={Details} />
 			</DefaultLayout>
 		</Switch>
 	);

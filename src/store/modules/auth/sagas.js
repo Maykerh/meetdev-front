@@ -16,7 +16,8 @@ function* signIn({ payload }) {
 		});
 
 		api.defaults.headers.Authorization = `Bearer ${session.data.token}`;
-
+		console.log('api.defaults.headers');
+		console.log(api.defaults.headers);
 		yield put(signInSuccess(session.data.token, session.data.user));
 
 		history.push('/dashboard');
