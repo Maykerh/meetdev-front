@@ -4,7 +4,7 @@ export const Container = styled.button`
 	width: ${props => (props.width ? props.width : '180px')};
 	height: 40px;
 	color: #fff;
-	background-color: #f84c69;
+	background-color: ${props => (props.color ? props.color : '#f84c69')};
 	border: none;
 	border-radius: 4px;
 	font-weight: bold;

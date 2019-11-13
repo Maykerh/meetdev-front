@@ -43,7 +43,9 @@ const Dashboard = () => {
 				<div>{item.title}</div>
 				<div>
 					<time>{item.formattedDate}</time>
-					<Link to={`/meetup-details/${item.id}`}>
+					<Link
+						to={{ pathname: '/meetup-details/', state: { item } }}
+					>
 						<FaChevronRight size={12} color="#FFF" />
 					</Link>
 				</div>

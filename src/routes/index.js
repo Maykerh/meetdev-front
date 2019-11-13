@@ -22,7 +22,7 @@ const Routes = () => {
 						return <Link to="/dashboard">Dash</Link>;
 					}}
 				/>
-				<PrivateRoute path="/meetup-details/:id" component={Details} />
+				<PrivateRoute path="/meetup-details" component={Details} />
 			</DefaultLayout>
 		</Switch>
 	);
