@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import auth from './auth/reducers';
+import meetup from './meetup/reducers';
 
 const persistReducer = (state = {}, action) => {
 	switch (action.type) {
@@ -20,6 +21,7 @@ const persistReducer = (state = {}, action) => {
 
 const rootReducer = combineReducers({
 	auth,
+	meetup,
 	persistReducer
 });
 

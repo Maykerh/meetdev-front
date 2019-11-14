@@ -60,4 +60,8 @@ export const ListItem = styled.div`
 			margin-top: 2px;
 		}
 	}
+
+	svg {
+		cursor: pointer;
+	}
 `;

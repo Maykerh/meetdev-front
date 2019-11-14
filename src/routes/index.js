@@ -8,21 +8,23 @@ import SignUp from '../pages/SignUp';
 import Dashboard from '../pages/Dashboard';
 import Details from '../pages/Details';
 import DefaultLayout from '../components/DafaultLayout';
+import MeetupRegister from '../pages/MeetupRegister';
 
 const Routes = () => {
 	return (
 		<Switch>
-			<Route exact path="/" component={Login} />
-			<Route path="/signup" component={SignUp} />
+			<Route exact path='/' component={Login} />
+			<Route path='/signup' component={SignUp} />
 			<DefaultLayout>
-				<PrivateRoute path="/dashboard" component={Dashboard} />
+				<PrivateRoute path='/dashboard' component={Dashboard} />
 				<PrivateRoute
-					path="/teste"
+					path='/teste'
 					component={() => {
-						return <Link to="/dashboard">Dash</Link>;
+						return <Link to='/dashboard'>Dash</Link>;
 					}}
 				/>
-				<PrivateRoute path="/meetup-details" component={Details} />
+				<PrivateRoute path='/meetup-details' component={Details} />
+				<PrivateRoute path='/meetup-register' component={MeetupRegister} />
 			</DefaultLayout>
 		</Switch>
 	);

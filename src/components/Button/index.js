@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-const Button = ({ text, width, Icon, color }) => {
+const Button = ({ text, width, Icon, color, type }) => {
 	return (
-		<Container width={width} color={color}>
+		<Container width={width} color={color} type={type}>
 			{Icon ? <Icon size={'16px'} /> : null}
-			{text}
+			<span>{text}</span>
 		</Container>
 	);
 };
