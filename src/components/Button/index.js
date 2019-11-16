@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-const Button = ({ text, width, Icon, color, type }) => {
+const Button = ({ text, width, Icon, color, type, onClick }) => {
 	return (
-		<Container width={width} color={color} type={type}>
+		<Container width={width} color={color} type={type} onClick={onClick}>
 			{Icon ? <Icon size={'16px'} /> : null}
 			<span>{text}</span>
 		</Container>

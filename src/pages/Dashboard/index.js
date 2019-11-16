@@ -28,9 +28,9 @@ const Dashboard = () => {
 			response.data.map(meetup => {
 				let date = new Date(meetup.date);
 
-				date = utcToZonedTime(date, 'America/Sao_Paulo');
+				date = utcToZonedTime(meetup.date, 'America/Sao_Paulo');
 
-				meetup.formattedDate = format(date, "d ' de ' LLLL ', às' k'h'", { locale: pt });
+				meetup.formattedDate = format(date, "d ' de ' LLLL ', às' kk':'mm'h'", { locale: pt });
 			});
 
 			setUserMeetups(response.data);
@@ -53,7 +53,7 @@ const Dashboard = () => {
 					<time>{item.formattedDate}</time>
 					<FaChevronRight
 						size={12}
-						color='#FFF'
+						color="#FFF"
 						onClick={() => {
 							handleMeetupClick(item);
 						}}
@@ -63,19 +63,19 @@ const Dashboard = () => {
 		);
 	}
 
-	if (userMeetups.length === 0) {
-		return 'Nenhum meetup encontrado';
-	}
-
 	return (
 		<Container>
 			<ListHeader>
 				<div>Meus meetups</div>
-				<Link to={{ pathname: '/meetup-register/' }}>
+				<Link to={{ pathname: '/meetup-register/new' }}>
 					<Button text={'Novo meetup'} Icon={FaPlusCircle} />
 				</Link>
 			</ListHeader>
-			<List>{userMeetups.map(meetup => renderItem(meetup))}</List>
+			{userMeetups.length === 0 ? (
+				'Nenhum meetup encontrado'
+			) : (
+				<List>{userMeetups.map(meetup => renderItem(meetup))}</List>
+			)}
 		</Container>
 	);
 };

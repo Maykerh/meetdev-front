@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useField, Form, Input } from '@rocketseat/unform';
 import { useDispatch } from 'react-redux';
 
+import { FaCamera, FaPlusCircle } from 'react-icons/fa';
 import Button from '../../components/Button';
 
 import { Container, ImageInput } from './styles';
 
-import { FaCamera, FaPlusCircle } from 'react-icons/fa';
-
-import { meetupRegisterRequest } from '../../store/modules/meetup/actions';
+import { meetupRegisterRequest, meetupUpdateRequest } from '../../store/modules/meetup/actions';
 
 import api from '../../services/api';
 
@@ -21,15 +20,45 @@ const schema = Yup.object().shape({
 	location: Yup.string().required()
 });
 
-export default function MeetupRegister() {
+export default function MeetupRegister(props) {
 	const { defaultValue, registerField } = useField('avatar');
 
 	const [file, setFile] = useState(defaultValue && defaultValue.id);
 	const [preview, setPreview] = useState(defaultValue && defaultValue.url);
+	const [meetupData, setMeetupData] = useState({});
+	const [isEdit, setIsEdit] = useState(false);
 
 	const dispatch = useDispatch();
 
 	const ref = useRef();
+
+	useEffect(() => {
+		if (!props.match || !props.match.params.id || props.match.params.id === 'new') {
+			return;
+		}
+
+		setIsEdit(true);
+
+		async function loadMeetupData() {
+			let { data } = await api.get(`/meetups/${props.match.params.id}`);
+
+			let metData = {
+				title: data.title,
+				description: data.description,
+				date: data.date,
+				location: data.location
+			};
+
+			if (data.banner) {
+				setFile(data.banner.id);
+				setPreview(data.banner.url);
+			}
+
+			setMeetupData(metData);
+		}
+
+		loadMeetupData();
+	}, []);
 
 	useEffect(() => {
 		if (ref.current) {
@@ -58,16 +87,20 @@ export default function MeetupRegister() {
 	function handleSubmit(data) {
 		data.banner_id = file;
 
-		dispatch(meetupRegisterRequest(data));
+		if (isEdit) {
+			dispatch(meetupUpdateRequest(data, props.match.params.id));
+		} else {
+			dispatch(meetupRegisterRequest(data));
+		}
 	}
 
 	function getImgComponent() {
-		return <img src={preview} alt='' />;
+		return <img src={preview} alt={''} />;
 	}
 
 	function getUploadComponent() {
 		return (
-			<div id='upload-component'>
+			<div id={'upload-component'}>
 				<FaCamera size={'50px'} />
 				<span>{'Selecionar imagem'}</span>
 			</div>
@@ -76,29 +109,28 @@ export default function MeetupRegister() {
 
 	return (
 		<Container>
-			<Form schema={schema} onSubmit={handleSubmit}>
+			<Form schema={schema} onSubmit={handleSubmit} initialData={meetupData}>
 				<ImageInput>
-					<label htmlFor='banner'>
+					<label htmlFor={'banner'}>
 						{preview ? getImgComponent() : getUploadComponent()}
 
 						<input
-							type='file'
-							id='banner'
-							accept='image/*'
+							type={'file'}
+							id={'banner'}
+							accept={'image/*'}
 							data-file={file || null}
 							onChange={handleChangeImage}
 							ref={ref}
 						/>
 					</label>
 				</ImageInput>
-				<div id='form-fields'>
-					<Input name='title' type='text' placeholder='Título' />
-					<Input name='description' type='text' placeholder='Descrição' multiline />
-					<Input name='date' type='text' placeholder='Data' />
-					<Input name='location' type='text' placeholder='Localização' />
-				</div>
 
-				<Button type='submit' Icon={FaPlusCircle} text={'Salvar meetup'} />
+				<Input name="title" type="text" placeholder="Título" />
+				<Input name="description" type="text" placeholder="Descrição" multiline />
+				<Input name="date" type="text" placeholder="Data" />
+				<Input name="location" type="text" placeholder="Localização" />
+
+				<Button type="submit" Icon={FaPlusCircle} text={'Salvar meetup'} />
 			</Form>
 		</Container>
 	);

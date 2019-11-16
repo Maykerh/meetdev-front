@@ -16,8 +16,7 @@ function* signIn({ payload }) {
 		});
 
 		api.defaults.headers.Authorization = `Bearer ${session.data.token}`;
-		console.log('api.defaults.headers');
-		console.log(api.defaults.headers);
+
 		yield put(signInSuccess(session.data.token, session.data.user));
 
 		history.push('/dashboard');
@@ -46,7 +45,4 @@ function* signUp({ payload }) {
 	}
 }
 
-export default all([
-	takeLatest('@auth/SIGN_IN_REQUEST', signIn),
-	takeLatest('@auth/SIGN_UP_REQUEST', signUp)
-]);
+export default all([takeLatest('@auth/SIGN_IN_REQUEST', signIn), takeLatest('@auth/SIGN_UP_REQUEST', signUp)]);
