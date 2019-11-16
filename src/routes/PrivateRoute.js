@@ -10,8 +10,10 @@ const PrivateRoute = ({ children, ...rest }) => {
 	const { signed } = store.getState().auth;
 
 	console.log(store.getState());
+	console.log(['signed', signed]);
 
 	if (!signed) {
+		console.log('entrou');
 		return <Redirect to="/" />;
 	}
 

@@ -9,6 +9,7 @@ import Dashboard from '../pages/Dashboard';
 import Details from '../pages/Details';
 import DefaultLayout from '../components/DafaultLayout';
 import MeetupRegister from '../pages/MeetupRegister';
+import Profile from '../pages/Profile';
 
 const Routes = () => {
 	return (
@@ -25,6 +26,7 @@ const Routes = () => {
 				/>
 				<PrivateRoute path="/meetup-details" component={Details} />
 				<PrivateRoute path="/meetup-register/:id" component={MeetupRegister} />
+				<PrivateRoute path="/profile/" component={Profile} />
 			</DefaultLayout>
 		</Switch>
 	);

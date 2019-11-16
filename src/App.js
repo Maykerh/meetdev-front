@@ -20,6 +20,7 @@ if (storedUserData) {
 }
 
 function App() {
+	console.log(['storedUserData', storedUserData]);
 	return (
 		<Provider store={store}>
 			<Router history={history}>

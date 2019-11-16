@@ -8,7 +8,7 @@ export function signInRequest(email, password) {
 export function signInSuccess(token, user) {
 	return {
 		type: '@auth/SIGN_IN_SUCCESS',
-		payload: { token, user }
+		payload: { token, profile: user }
 	};
 }
 
@@ -29,5 +29,25 @@ export function signUpSuccess(name, email, password) {
 export function signFailure() {
 	return {
 		type: '@auth/SIGN_FAILURE'
+	};
+}
+
+export function userUpdateRequest(userData) {
+	return {
+		type: '@auth/USER_UPDATE_REQUEST',
+		payload: userData
+	};
+}
+
+export function userUpdateSuccess(userData) {
+	return {
+		type: '@auth/USER_UPDATE_SUCCESS',
+		payload: userData
+	};
+}
+
+export function logout() {
+	return {
+		type: '@auth/LOGOUT'
 	};
 }

@@ -40,9 +40,9 @@ export default function MeetupRegister(props) {
 		setIsEdit(true);
 
 		async function loadMeetupData() {
-			let { data } = await api.get(`/meetups/${props.match.params.id}`);
+			const { data } = await api.get(`/meetups/${props.match.params.id}`);
 
-			let metData = {
+			const metData = {
 				title: data.title,
 				description: data.description,
 				date: data.date,
@@ -58,7 +58,7 @@ export default function MeetupRegister(props) {
 		}
 
 		loadMeetupData();
-	}, []);
+	});
 
 	useEffect(() => {
 		if (ref.current) {
